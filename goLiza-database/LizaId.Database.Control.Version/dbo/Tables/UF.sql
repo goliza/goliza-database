@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[UF] (
+    [idUF]   CHAR (2)      NOT NULL,
+    [NomeUF] VARCHAR (MAX) NOT NULL,
+    CONSTRAINT [PK_UF] PRIMARY KEY CLUSTERED ([idUF] ASC)
+);
+

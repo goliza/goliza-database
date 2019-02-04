@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>LizaId.Database.Control.Version</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{bb4d3e72-09c9-4981-ad90-366b8ef5f9c3}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>LizaId.Database.Control.Version</RootNamespace>
+    <AssemblyName>LizaId.Database.Control.Version</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\EmailRecomendacao.sql" />
+    <Build Include="dbo\Tables\UsuarioEmpresa.sql" />
+    <Build Include="dbo\Tables\TelefoneEndereco.sql" />
+    <Build Include="dbo\Tables\Compartilhamento.sql" />
+    <Build Include="dbo\Tables\Pendencia.sql" />
+    <Build Include="dbo\Tables\GrupoInformacaoCompartilhamento.sql" />
+    <Build Include="dbo\Tables\UsuarioReceptorCompartilhamento.sql" />
+    <Build Include="dbo\Tables\TipoDocumento.sql" />
+    <Build Include="dbo\Tables\Plano.sql" />
+    <Build Include="dbo\Tables\Endereco.sql" />
+    <Build Include="dbo\Tables\Contato.sql" />
+    <Build Include="dbo\Tables\Email.sql" />
+    <Build Include="dbo\Tables\Documento.sql" />
+    <Build Include="dbo\Tables\Token.sql" />
+    <Build Include="dbo\Tables\Pais.sql" />
+    <Build Include="dbo\Tables\Perfil.sql" />
+    <Build Include="dbo\Tables\PerfilUsuario.sql" />
+    <Build Include="dbo\Tables\Permissao.sql" />
+    <Build Include="dbo\Tables\PermissaoPerfil.sql" />
+    <Build Include="dbo\Tables\Prospect.sql" />
+    <Build Include="dbo\Tables\Usuario.sql" />
+    <Build Include="dbo\Tables\Telefone.sql" />
+    <Build Include="dbo\Tables\TipoContato.sql" />
+    <Build Include="dbo\Tables\TipoTelefone.sql" />
+    <Build Include="dbo\Tables\UF.sql" />
+    <Build Include="dbo\Tables\UsuarioStatus.sql" />
+    <Build Include="dbo\Tables\Recomendacao.sql" />
+    <Build Include="dbo\Tables\EmpresaGrupo.sql" />
+    <Build Include="dbo\Tables\GrupoInformacao.sql" />
+    <Build Include="dbo\Tables\EmpresaReceptora.sql" />
+    <Build Include="dbo\Tables\TelefoneRecomendacao.sql" />
+    <Build Include="dbo\Tables\TokenStatus.sql" />
+    <Build Include="Security\andreroque.sql" />
+    <Build Include="Security\andreroque_1.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefonesRecomendacaoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailsRecomendacaoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TokenInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefonesRecomendacaoListarPorIdEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailsRecomendacaoListarPorIdEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoFiltrar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneRecomendacaoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailRecomendacaoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioReceptorCompartilhamentoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioReceptorCompartilhamentoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioReceptorCompartilhamentoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioReceptorCompartilhamentoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoCompartilhamentoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoCompartilhamentoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoCompartilhamentoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoCompartilhamentoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioProprietarioEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_VerificaUsuarioAtivoNosEmails.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefonesEnderecoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefonesEnderecoListarPorIdEmpresa.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaListarCompartilhadas.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneEnderecoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\CompartilhamentoExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoExistePorID.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoExistePorCNPJ.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TokenReduzidoContar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TokenContar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TokenObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoFiltrar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_DocumentoExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_VerificarHeavyUser.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioCompartilhamentoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_GrupoInformacaoCompartilhamentoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TokenAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioContar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioAtivar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioAtivoContar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoFiltrar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ContatoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_RecomendacaoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmailsListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_VerificarCompartilhamento.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaGrupoObterPorIdUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoFiltrar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EnderecoObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_ProspectInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_BuscarTipoDocumento.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefoneObter.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_TelefonesListar.sql" />
+  </ItemGroup>
+</Project>
