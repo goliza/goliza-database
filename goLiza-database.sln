@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LizaId.Database.Control.Version", "LizaId.Database.Control.Version\LizaId.Database.Control.Version.sqlproj", "{BB4D3E72-09C9-4981-AD90-366B8EF5F9C3}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LizaId.Database.Control.Version", "source\LizaId.Database.Control.Version\LizaId.Database.Control.Version.sqlproj", "{BB4D3E72-09C9-4981-AD90-366B8EF5F9C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
