@@ -97,8 +97,6 @@
     <Build Include="dbo\Tables\EmpresaReceptora.sql" />
     <Build Include="dbo\Tables\TelefoneRecomendacao.sql" />
     <Build Include="dbo\Tables\TokenStatus.sql" />
-    <Build Include="Security\andreroque.sql" />
-    <Build Include="Security\andreroque_1.sql" />
     <Build Include="dbo\Stored Procedures\Proc_EmpresaObter.sql" />
     <Build Include="dbo\Stored Procedures\Proc_TelefonesRecomendacaoListar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_EmpresaInserir.sql" />
