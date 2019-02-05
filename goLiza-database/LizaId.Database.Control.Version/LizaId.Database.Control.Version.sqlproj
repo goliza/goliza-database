@@ -191,5 +191,6 @@
     <Build Include="dbo\Stored Procedures\Proc_TelefoneInserir.sql" />
     <Build Include="dbo\Stored Procedures\Proc_TelefoneObter.sql" />
     <Build Include="dbo\Stored Procedures\Proc_TelefonesListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoAtivar.sql" />
   </ItemGroup>
 </Project>
