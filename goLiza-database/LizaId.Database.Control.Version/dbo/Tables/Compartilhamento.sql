@@ -6,6 +6,7 @@
     [DataCriacao]              DATETIME  NOT NULL,
     [idUsuarioUltimaAlteracao] INT       NULL,
     [DataUltimaAlteracao]      DATETIME  NULL,
+    [Status] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_Compartilhamento] PRIMARY KEY CLUSTERED ([idCompartilhamento] ASC),
     CONSTRAINT [FK_Compartilhamento_EmpresaReceptora] FOREIGN KEY ([idEmpresaProvedora]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]),
     CONSTRAINT [FK_Compartilhamento_Usuario] FOREIGN KEY ([idUsuarioCriacao]) REFERENCES [dbo].[Usuario] ([idUsuario]),
