@@ -191,4 +191,7 @@
     <Build Include="dbo\Stored Procedures\Proc_TelefonesListar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoAtivar.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Goliza.Dev.publish.xml" />
+  </ItemGroup>
 </Project>
