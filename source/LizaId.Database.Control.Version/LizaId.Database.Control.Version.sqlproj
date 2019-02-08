@@ -61,7 +61,6 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
@@ -193,5 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
+    <None Include="Goliza.Stag.publish.xml" />
   </ItemGroup>
 </Project>
