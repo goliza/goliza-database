@@ -194,4 +194,7 @@
     <None Include="Goliza.Dev.publish.xml" />
     <None Include="Goliza.Stag.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="LizaId.Database.Control.Version.refactorlog" />
+  </ItemGroup>
 </Project>
