@@ -7,7 +7,7 @@
     [idGrupoInformacao]          INT           NULL,
     [DescricaoPendencia]       VARCHAR (MAX) NULL,
     [StatusPendencia]          BIT           NOT NULL,
-    [idUsuarioCriacao]         INT           NOT NULL,
+    [idUsuarioCriacao]         INT           NULL,
     [DataCriacao]              DATETIME      NOT NULL,
     [idUsuarioUltimaAlteracao] INT           NULL,
     [DataUltimaAlteracao]      DATETIME      NULL,
