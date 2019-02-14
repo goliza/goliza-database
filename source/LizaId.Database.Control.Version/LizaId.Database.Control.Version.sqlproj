@@ -193,6 +193,7 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaExcluir.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaAlterar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
