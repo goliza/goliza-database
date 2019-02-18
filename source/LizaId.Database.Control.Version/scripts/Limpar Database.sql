@@ -1,0 +1,54 @@
+-- LIMPA COMPARTILHAMENTOS
+DELETE FROM UsuarioReceptorCompartilhamento
+DELETE FROM GrupoInformacaoCompartilhamento
+DELETE FROM Compartilhamento
+
+-- LIMPA PENDENCIAS
+DELETE FROM Pendencia
+
+-- LIMPA E-MAILS
+DELETE FROM EmailRecomendacao
+
+-- LIMPA USUARIOS
+DELETE FROM PerfilUsuario
+DELETE FROM Usuario
+
+-- LIMPA PROSPECTS
+DELETE FROM Prospect
+
+-- LIMPA RECOMENDACIES
+DELETE FROM TelefoneRecomendacao
+DELETE FROM Recomendacao
+
+-- LIMPA TOKENS
+DELETE FROM Token
+
+-- LIMPA EMPRESAS
+DELETE FROM TelefoneEndereco
+DELETE FROM Endereco
+DELETE FROM Documento
+DELETE FROM Email
+DELETE FROM Telefone
+DELETE FROM Contato
+DELETE FROM UsuarioEmpresa
+DELETE FROM EmpresaReceptora
+DELETE FROM EmpresaGrupo
+
+-- Reseta os Ids
+DBCC CHECKIDENT('UsuarioReceptorCompartilhamento', RESEED, 0)
+DBCC CHECKIDENT('GrupoInformacaoCompartilhamento', RESEED, 0)
+DBCC CHECKIDENT('Compartilhamento', RESEED, 0)
+DBCC CHECKIDENT('EmailRecomendacao', RESEED, 0)
+DBCC CHECKIDENT('Usuario', RESEED, 0)
+DBCC CHECKIDENT('Prospect', RESEED, 0)
+DBCC CHECKIDENT('TelefoneRecomendacao', RESEED, 0)
+DBCC CHECKIDENT('Recomendacao', RESEED, 0)
+DBCC CHECKIDENT('Token', RESEED, 0)
+DBCC CHECKIDENT('TelefoneEndereco', RESEED, 0)
+DBCC CHECKIDENT('Endereco', RESEED, 0)
+DBCC CHECKIDENT('Documento', RESEED, 0)
+DBCC CHECKIDENT('Email', RESEED, 0)
+DBCC CHECKIDENT('Telefone', RESEED, 0)
+DBCC CHECKIDENT('Contato', RESEED, 0)
+DBCC CHECKIDENT('EmpresaReceptora', RESEED, 0)
+DBCC CHECKIDENT('EmpresaGrupo', RESEED, 0)
