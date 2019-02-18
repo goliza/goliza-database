@@ -190,9 +190,17 @@
     <Build Include="dbo\Stored Procedures\Proc_TelefoneObter.sql" />
     <Build Include="dbo\Stored Procedures\Proc_TelefonesListar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_CompartilhamentoAtivar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaInserir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaExcluir.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaAlterar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaExiste.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
     <None Include="Goliza.Stag.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="LizaId.Database.Control.Version.refactorlog" />
   </ItemGroup>
 </Project>
