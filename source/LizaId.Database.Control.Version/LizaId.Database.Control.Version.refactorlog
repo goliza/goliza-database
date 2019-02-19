@@ -7,4 +7,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="idGrupoInformacao" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="d67d5387-8adc-41d3-9eb5-36a2aa79d205" ChangeDateTime="02/19/2019 14:35:30">
+    <Property Name="ElementName" Value="[dbo].[CK_EmpresaReceptora_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[EmpresaReceptora]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_EmpresaReceptora_CnpjEmpresa]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="af808cb4-3342-414a-8787-2dd35f635e11" ChangeDateTime="02/19/2019 14:38:06">
+    <Property Name="ElementName" Value="[dbo].[AK_EmpresaReceptora_Column]" />
+    <Property Name="ElementType" Value="SqlUniqueConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[EmpresaReceptora]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[UK_EmpresaReceptora_CnpjEmpresa]" />
+  </Operation>
 </Operations>
