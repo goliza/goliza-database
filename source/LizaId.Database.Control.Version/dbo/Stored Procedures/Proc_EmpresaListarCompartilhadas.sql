@@ -1,5 +1,6 @@
-﻿CREATE PROC [dbo].[Proc_EmpresaListarCompartilhadas] --[dbo].[Proc_EmpresaListarCompartilhadas] 7
-    @idUsuario int
+﻿CREATE PROC [dbo].[Proc_EmpresaListarCompartilhadas] 
+	@idUsuario int,
+	@idEmpresaReceptora int
 AS 
 BEGIN
 	
@@ -16,6 +17,8 @@ BEGIN
 		INNER JOIN UsuarioEmpresa ue on ue.idEmpresa = er.idEmpresaReceptora
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
 		WHERE u.idUsuario = @idUsuario
+		and ue.idEmpresa = @idEmpresaReceptora
+		
 	)
 
 END
