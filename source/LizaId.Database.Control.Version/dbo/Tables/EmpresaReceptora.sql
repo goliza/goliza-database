@@ -35,6 +35,5 @@
     [ValorCapitalSocialEmpresa]          DECIMAL (18, 2) NULL,
     CONSTRAINT [PK_Empresa] PRIMARY KEY CLUSTERED ([idEmpresaReceptora] ASC),
     CONSTRAINT [FK_EmpresaReceptora_Empresa] FOREIGN KEY ([idEmpresaGrupo]) REFERENCES [dbo].[EmpresaGrupo] ([idEmpresaGrupo]), 
-    CONSTRAINT [AK_EmpresaReceptora_CNPJEmpresa] UNIQUE ([CNPJEmpresa])
 );
 
