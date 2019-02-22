@@ -195,10 +195,15 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaAlterar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaExiste.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaObterPorCnpj.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
     <None Include="Goliza.Stag.publish.xml" />
+    <None Include="LizaId.Database.Control.Version.publish.xml" />
+    <None Include="DEV.publish.xml" />
+    <None Include="Stag.xml" />
+    <None Include="DEV.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LizaId.Database.Control.Version.refactorlog" />
