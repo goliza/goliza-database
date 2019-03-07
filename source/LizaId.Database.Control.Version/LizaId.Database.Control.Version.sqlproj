@@ -196,6 +196,7 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaExiste.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_EmpresaObterPorCnpj.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaObter.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
