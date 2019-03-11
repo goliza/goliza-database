@@ -36,15 +36,18 @@ BEGIN
 		,idEmpresaDestinataria
 		,EmailDestinatario
 		,AssuntoPendencia
-		,idGrupoInformacao
+		,p.idGrupoInformacao
 		,DescricaoPendencia
 		,StatusPendencia
 		,idUsuarioCriacao
 		,DataCriacao
 		,idUsuarioUltimaAlteracao
 		,DataUltimaAlteracao
+		,gi.NomeGrupoInformacao
+		,RazaoSocial = er.RazaoSocialEmpresa
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
+	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
 	WHERE 
 		(@IdEmpresa = 
 		case when @IdEmpresa > 0
@@ -75,7 +78,7 @@ BEGIN
 		end)
 	AND (@idUsuarioEmpresa =
 		case when @idUsuarioEmpresa > 0
-		then p.idUsuarioCriacao
+		then p.idUsuarioEmpresa
 		else @idUsuarioEmpresa
 		end)
 
