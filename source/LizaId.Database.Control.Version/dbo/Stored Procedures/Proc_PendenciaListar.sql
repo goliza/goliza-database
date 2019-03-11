@@ -35,15 +35,18 @@ BEGIN
 		,idEmpresaDestinataria
 		,EmailDestinatario
 		,AssuntoPendencia
-		,idGrupoInformacao
+		,p.idGrupoInformacao
 		,DescricaoPendencia
 		,StatusPendencia
 		,idUsuarioCriacao
 		,DataCriacao
 		,idUsuarioUltimaAlteracao
 		,DataUltimaAlteracao
+		,gi.NomeGrupoInformacao
+		,er.RazaoSocialEmpresa
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
+	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
 	WHERE 
 		(@IdEmpresa = 
 		case when @IdEmpresa > 0
