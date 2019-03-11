@@ -8,7 +8,8 @@
 	@subgrupo int = 0, 
 	@idUsuarioEmpresa int = 0,
 	@Inicio INT = 0, 
-	@Total INT = 10
+	@Total INT = 10,
+	@isSistema bit = 1
 AS 
 BEGIN
 
@@ -35,18 +36,15 @@ BEGIN
 		,idEmpresaDestinataria
 		,EmailDestinatario
 		,AssuntoPendencia
-		,p.idGrupoInformacao
+		,idGrupoInformacao
 		,DescricaoPendencia
 		,StatusPendencia
 		,idUsuarioCriacao
 		,DataCriacao
 		,idUsuarioUltimaAlteracao
 		,DataUltimaAlteracao
-		,gi.NomeGrupoInformacao
-		,er.RazaoSocialEmpresa
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
-	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
 	WHERE 
 		(@IdEmpresa = 
 		case when @IdEmpresa > 0
@@ -58,12 +56,12 @@ BEGIN
 		then er.CNPJEmpresa
 		else @cnpj
 		end)
-	AND (Month(ISNULL(@mesAno,'')) =
+	AND (Month(@mesAno) =
 		case when len(@mesAno) > 0
 		then MONTH(p.DataCriacao)
 		else Month(@mesAno)
 		end)
-	AND (Year(ISNULL(@mesAno,'')) =
+	AND (Year(@mesAno) =
 		case when len(@mesAno) > 0
 		then YEAR(p.DataCriacao)
 		else Year(@mesAno)
@@ -80,6 +78,25 @@ BEGIN
 		then p.idUsuarioCriacao
 		else @idUsuarioEmpresa
 		end)
+
+	AND (case when @isSistema = 1
+		then p.DescricaoPendencia
+		else 'true'
+		end) =
+		(case when @isSistema = 1
+		then 'Pendência gerada automaticamente.'
+		else 'true'
+		end) 
+
+	AND (case when @isSistema != 1
+		then p.DescricaoPendencia
+		else 'true'
+		end) !=
+		(case when @isSistema != 1
+		then 'Pendência gerada automaticamente.'
+		else 'false'
+		end)
+
 		ORDER BY [idPendencia] DESC
 		OFFSET @Inicio ROW
 		FETCH NEXT @Total ROWS ONLY
