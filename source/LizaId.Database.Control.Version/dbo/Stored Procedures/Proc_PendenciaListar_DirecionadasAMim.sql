@@ -8,7 +8,8 @@
 	@Inicio INT = 0, 
 	@Total INT = 10,
 	@idEmpresaRemetente INT = 0,
-	@idUsuarioDestino int = 0
+	--@idUsuarioDestino int = 0
+	@idEmpresaDestinataria int = 0
 AS
 BEGIN
 
@@ -45,7 +46,7 @@ BEGIN
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
 	FROM [dbo].[Pendencia] p
-	INNER JOIN [dbo].Usuario u on p.EmailDestinatario = u.LoginUsuario
+	--INNER JOIN [dbo].Usuario u on p.EmailDestinatario = u.LoginUsuario
 	INNER JOIN UsuarioEmpresa ue on p.idUsuarioEmpresa = ue.idUsuarioEmpresa
 	INNER JOIN EmpresaReceptora er on er.idEmpresaReceptora = ue.idEmpresa
 	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
@@ -95,10 +96,17 @@ BEGIN
 		else @IdEmpresaRemetente
 		end)
 	--id usuario destino
-	AND	(@idUsuarioDestino = 
-		case when @idUsuarioDestino > 0
-		then u.idUsuario
-		else @idUsuarioDestino
+	--AND	(@idUsuarioDestino = 
+	--	case when @idUsuarioDestino > 0
+	--	then u.idUsuario
+	--	else @idUsuarioDestino
+	--	end)
+
+	--id empresa destinataria
+	AND	(@idEmpresaDestinataria = 
+		case when @idEmpresaDestinataria > 0
+		then p.idEmpresaDestinataria
+		else @idEmpresaDestinataria
 		end)
 	
 		ORDER BY [idPendencia] DESC
