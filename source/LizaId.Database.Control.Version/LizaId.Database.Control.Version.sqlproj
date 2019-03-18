@@ -207,6 +207,7 @@
     <None Include="DEV.publish.xml" />
     <None Include="Stag.xml" />
     <None Include="DEV.xml" />
+    <None Include="LizaId_1.Database.Control.Version.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LizaId.Database.Control.Version.refactorlog" />

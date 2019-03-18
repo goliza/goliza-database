@@ -1,7 +1,8 @@
 ﻿CREATE PROC [dbo].[Proc_VerificarCompartilhamento] --[dbo].[Proc_VerificarCompartilhamento] 21, 101, 1
     @idUsuario int,
 	@codigoGrupoInformacao int=0,
-	@idEmpresaProvedora int
+	@idEmpresaProvedora int,
+	@idEmpresaReceptora int
 AS 
 BEGIN
 	SELECT UE.idUsuario
@@ -16,6 +17,7 @@ BEGIN
 		else @codigoGrupoInformacao
 		end)
 	AND UE.idUsuario = @idUsuario
+	AND ue.idEmpresa = @idEmpresaReceptora
 END
 
 
