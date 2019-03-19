@@ -10,8 +10,8 @@ AS
 BEGIN
 	DECLARE @NewId INTEGER;
 	
-	INSERT INTO [dbo].[Documento] ([idEmpresa], [idTipoDocumento], [NomeDocumento], [DataEmissaoDocumento], [DataVencimentoDocumento], [ComentariosDocumento], [idArquivo])
-	SELECT @idEmpresa, @idTipoDocumento, @NomeDocumento, @DataEmissaoDocumento, @DataVencimentoDocumento, @ComentariosDocumento, @idArquivo
+	INSERT INTO [dbo].[Documento] ([idEmpresa], [idTipoDocumento], [NomeDocumento], [DataEmissaoDocumento], [DataVencimentoDocumento], [ComentariosDocumento], [idArquivo], [DataCriacao])
+	SELECT @idEmpresa, @idTipoDocumento, @NomeDocumento, @DataEmissaoDocumento, @DataVencimentoDocumento, @ComentariosDocumento, @idArquivo, GETDATE()
 	
 	SELECT @NewId = SCOPE_IDENTITY()
 	RETURN (@NewId)
