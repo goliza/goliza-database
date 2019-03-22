@@ -199,6 +199,7 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaObter.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar_CriadasPorMim.sql" />
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar_DirecionadasAMim.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_EmpresaListarIncluindoRelacionadas.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
