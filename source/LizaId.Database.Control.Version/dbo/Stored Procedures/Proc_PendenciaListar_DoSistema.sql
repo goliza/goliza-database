@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema]
 	@statusPendencia bit = 1,
 	@mesAno varchar(10) = '',
-	@dataInicio datetime, 
-	@dataFim datetime,
+	@dataInicio datetime = NULL, 
+	@dataFim datetime = NULL,
 	@subgrupo int = 0, 
 	@Inicio INT = 0, 
 	@Total INT = 10,
@@ -11,22 +11,10 @@
 AS 
 BEGIN
 
-	set dateformat dmy
-	
 	if(ISNULL(@mesAno, '') = '')
 	set @mesAno = ''
 	else
 	set @mesAno = CONCAT('01/', @mesAno)
-
-	if len(@dataInicio)>0
-	set @dataInicio = CONCAT(CONVERT(varchar(10), @dataInicio, 103), ' 00:00:00')
-	else
-	set @dataInicio = CONCAT(CONVERT(varchar(10), dateadd(DAY,-30, GETDATE()), 103), ' 00:00:00')
-
-	if len(@dataFim)>0
-	set @dataFim = CONCAT(CONVERT(varchar(10),@dataFim,103), ' 23:59:59')
-	else
-	set @dataFim = getdate()
 
 	SELECT 
 		p.idPendencia
@@ -61,7 +49,7 @@ BEGIN
 		else Year(@mesAno)
 		end)
 	--periodo
-	AND p.DataCriacao between @dataInicio AND @dataFim
+	AND ((p.DataCriacao between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
 	--subgrupo
 	AND (@subgrupo =
 		case when @subgrupo > 0
