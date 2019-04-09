@@ -10,8 +10,6 @@
     [idUsuarioUltimaAlteracao] INT              NULL,
     [DataUltimaAlteracao]      DATETIME         NULL,
     CONSTRAINT [PK_TokenCompartilhamento] PRIMARY KEY CLUSTERED ([idToken] ASC),
-    CONSTRAINT [FK_Token_TokenStatus] FOREIGN KEY ([idTokenStatus]) REFERENCES [dbo].[TokenStatus] ([idTokenStatus]),
-    CONSTRAINT [FK_Token_Usuario] FOREIGN KEY ([idUsuarioCriacao]) REFERENCES [dbo].[Usuario] ([idUsuario]),
-    CONSTRAINT [FK_Token_Usuario1] FOREIGN KEY ([idUsuarioUltimaAlteracao]) REFERENCES [dbo].[Usuario] ([idUsuario])
+    CONSTRAINT [FK_Token_TokenStatus] FOREIGN KEY ([idTokenStatus]) REFERENCES [dbo].[TokenStatus] ([idTokenStatus])
 );
 
