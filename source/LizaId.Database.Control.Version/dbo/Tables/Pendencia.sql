@@ -11,9 +11,13 @@
     [DataCriacao]              DATETIME      NOT NULL,
     [idUsuarioUltimaAlteracao] INT           NULL,
     [DataUltimaAlteracao]      DATETIME      NULL,
-	CONSTRAINT [PK_Pendencia] PRIMARY KEY CLUSTERED ([idPendencia] ASC),
+	[idTipoPendencia] INT NOT NULL DEFAULT 1, 
+    [idDocumento] INT NOT NULL, 
+    CONSTRAINT [PK_Pendencia] PRIMARY KEY CLUSTERED ([idPendencia] ASC),
     CONSTRAINT [FK_Pendencia_EmpresaReceptora] FOREIGN KEY ([idEmpresaDestinataria]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]),
     CONSTRAINT [FK_Pendencia_UsuarioEmpresa] FOREIGN KEY ([idUsuarioEmpresa]) REFERENCES [dbo].[UsuarioEmpresa] ([idUsuarioEmpresa]),
-	CONSTRAINT [FK_Pendencia_GrupoInformacao] FOREIGN KEY ([idGrupoInformacao]) REFERENCES [dbo].[GrupoInformacao] ([idGrupoInformacao])
+	CONSTRAINT [FK_Pendencia_GrupoInformacao] FOREIGN KEY ([idGrupoInformacao]) REFERENCES [dbo].[GrupoInformacao] ([idGrupoInformacao]),
+	CONSTRAINT [FK_Pendencia_TipoPendencia] FOREIGN KEY ([idTipoPendencia]) REFERENCES [dbo].[TipoPendencia] ([idTipoPendencia]),
+	CONSTRAINT [FK_Pendencia_Documento] FOREIGN KEY ([idDocumento]) REFERENCES [dbo].[Documento] ([idDocumento]),
 );
 

@@ -21,4 +21,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[UK_EmpresaReceptora_CnpjEmpresa]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="48817cdb-577c-4c75-afd9-afe7623066d9" ChangeDateTime="04/09/2019 17:34:28">
+    <Property Name="ElementName" Value="[dbo].[TipoPendencia].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TipoPendencia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdTipoPendencia" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2903c4f5-887e-463a-9303-256a53f31aae" ChangeDateTime="04/09/2019 18:17:49">
+    <Property Name="ElementName" Value="[dbo].[Pendencia].[IdDocumento]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pendencia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idDocumento" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="13ff6673-6e8a-40d5-a06d-3d8611e3a1d9" ChangeDateTime="04/09/2019 18:17:56">
+    <Property Name="ElementName" Value="[dbo].[Pendencia].[IdTipoPendencia]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pendencia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="idTipoPendencia" />
+  </Operation>
 </Operations>
