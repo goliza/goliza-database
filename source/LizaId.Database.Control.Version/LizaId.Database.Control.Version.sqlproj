@@ -215,6 +215,7 @@
     <RefactorLog Include="LizaId.Database.Control.Version.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="scripts\Script.PostDeployment.sql" />
+    <PostDeploy Include="scripts\TipoPendenciaConstantes.PostDeployment.sql" />
+    <None Include="scripts\GrupoInformacaoConstantes.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

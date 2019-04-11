@@ -18,3 +18,4 @@ INSERT INTO [dbo].[TipoPendencia] (IdTipoPendencia, Nome)
 SELECT 2, N'Sistema'
 WHERE not exists (select 1 from [dbo].[TipoPendencia] where IdTipoPendencia = 2)
 --
+
