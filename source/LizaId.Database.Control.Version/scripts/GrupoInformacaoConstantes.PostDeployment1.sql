@@ -122,5 +122,11 @@ INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idG
 SELECT 901, N'Documentos Adicionais', 9
 WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 901)
 
+INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idGrupoInformacaoPai)
+SELECT 10, N'Termo de Responsabilidade', null
+WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 10)
 
+INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idGrupoInformacaoPai)
+SELECT 1001, N'Declaração Cadastral', 10
+WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 1001)
 
