@@ -31,9 +31,11 @@ BEGIN
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
+		,d.DataVencimentoDocumento
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
 	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
+	LEFT JOIN [dbo].Documento d ON p.idDocumento = d.idDocumento
 	WHERE 
 	--status
 	p.StatusPendencia = @statusPendencia
