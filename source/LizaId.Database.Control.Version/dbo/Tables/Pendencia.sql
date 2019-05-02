@@ -13,6 +13,7 @@
     [DataUltimaAlteracao]      DATETIME      NULL,
 	[idTipoPendencia] INT NOT NULL DEFAULT 1, 
     [idDocumento] INT NULL, 
+    [DescricaoEncerramento] VARCHAR(MAX) NULL, 
     CONSTRAINT [PK_Pendencia] PRIMARY KEY CLUSTERED ([idPendencia] ASC),
     CONSTRAINT [FK_Pendencia_EmpresaReceptora] FOREIGN KEY ([idEmpresaDestinataria]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]),
     CONSTRAINT [FK_Pendencia_UsuarioEmpresa] FOREIGN KEY ([idUsuarioEmpresa]) REFERENCES [dbo].[UsuarioEmpresa] ([idUsuarioEmpresa]),
