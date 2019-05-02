@@ -32,6 +32,7 @@ BEGIN
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
+		,p.DescricaoEncerramento
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
 	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
