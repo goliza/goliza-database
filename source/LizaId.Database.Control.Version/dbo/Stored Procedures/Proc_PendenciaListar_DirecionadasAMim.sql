@@ -33,6 +33,7 @@ BEGIN
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
+		,p.DescricaoEncerramento
 	FROM [dbo].[Pendencia] p
 	--INNER JOIN [dbo].Usuario u on p.EmailDestinatario = u.LoginUsuario
 	INNER JOIN UsuarioEmpresa ue on p.idUsuarioEmpresa = ue.idUsuarioEmpresa
