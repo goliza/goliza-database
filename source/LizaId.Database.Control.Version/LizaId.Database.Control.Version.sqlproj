@@ -63,6 +63,11 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="scripts" />
+    <Folder Include="Empresas\" />
+    <Folder Include="Empresas\Tables\" />
+    <Folder Include="Companies\" />
+    <Folder Include="Companies\Tables\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\EmailRecomendacao.sql" />
@@ -201,6 +206,18 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar_DirecionadasAMim.sql" />
     <Build Include="dbo\Stored Procedures\Proc_EmpresaListarIncluindoRelacionadas.sql" />
     <Build Include="dbo\Tables\TipoPendencia.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="Empresas\Tables\RecomendacoesNegocioTelefones.sql" />
+    <Build Include="Empresas\Tables\RecomendacoesNegocioEmails.sql" />
+    <Build Include="Empresas\Tables\RecomendacoesNegocio.sql" />
+    <Build Include="Companies\Tables\CompanyDocumentsReferences.sql" />
+    <Build Include="Companies\Tables\DocumentTemplates.sql" />
+    <Build Include="Companies\Tables\CompanyDocuments.sql" />
+    <Build Include="Companies\Tables\CompanyDocumentFiles.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_UsuarioObterPorEmail.sql" />
+    <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
+    <Build Include="Security\Empresas.sql" />
+    <Build Include="Security\Companies.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />

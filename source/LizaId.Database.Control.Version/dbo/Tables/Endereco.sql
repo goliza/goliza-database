@@ -11,9 +11,12 @@
     [ComplementoEndereco] VARCHAR (10)  NULL,
     [BairroEndereco]      VARCHAR (MAX) NULL,
     [CidadeEndereco]      VARCHAR (MAX) NULL,
+    [Cnpj]                VARCHAR (20)  NULL,
     CONSTRAINT [PK_Endereco] PRIMARY KEY CLUSTERED ([idEndereco] ASC),
     CONSTRAINT [FK_Endereco_Empresa] FOREIGN KEY ([idEmpresa]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]),
     CONSTRAINT [FK_Endereco_Pais] FOREIGN KEY ([idPaisEndereco]) REFERENCES [dbo].[Pais] ([idPais]),
     CONSTRAINT [FK_Endereco_UF] FOREIGN KEY ([UFEndereco]) REFERENCES [dbo].[UF] ([idUF])
 );
+
+
 
