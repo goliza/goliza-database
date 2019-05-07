@@ -15,6 +15,7 @@ BEGIN
 		,[ComplementoEndereco]
 		,[BairroEndereco]
 		,[CidadeEndereco]
+		,[Cnpj]
 	FROM   [dbo].[Endereco] 
 	WHERE  ([idEndereco] = @idEndereco) 
 END

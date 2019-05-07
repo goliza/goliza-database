@@ -17,6 +17,7 @@ BEGIN
 		,[ComplementoEndereco]
 		,[BairroEndereco]
 		,[CidadeEndereco]
+		,[Cnpj]
 	FROM [dbo].[Endereco]
 	WHERE [idEmpresa] = @IdEmpresa
 	ORDER BY [idEndereco] DESC
