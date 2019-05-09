@@ -13,6 +13,8 @@
 AS
 BEGIN
 
+	set dateformat dmy
+
 	if(ISNULL(@mesAno, '') = '')
 	set @mesAno = ''
 	else
@@ -41,7 +43,12 @@ BEGIN
 	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
 	WHERE 
 	--status
-	p.StatusPendencia = @statusPendencia
+	--p.StatusPendencia = @statusPendencia
+	(@statusPendencia =
+		case when @statusPendencia >= 0
+		then p.StatusPendencia
+		else @statusPendencia
+		end)
 	--mes ano
 	AND	(Month(@mesAno) =
 		case when len(@mesAno) > 0
