@@ -20,6 +20,11 @@ BEGIN
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
 		WHERE u.idUsuario = @idUsuario
 		and ue.idEmpresa = @idEmpresaReceptora
+		AND EXISTS(
+			select 1 from UsuarioReceptorCompartilhamento surc 
+			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
+			and surc.idCompartilhamento = c.idCompartilhamento
+		)
 	)
 	UNION 
 	--MINHAS EMPRESAS
