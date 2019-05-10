@@ -218,6 +218,7 @@
     <Build Include="dbo\Stored Procedures\Proc_PendenciaListar.sql" />
     <Build Include="Security\Empresas.sql" />
     <Build Include="Security\Companies.sql" />
+    <Build Include="dbo\Tables\Funcionario.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />
