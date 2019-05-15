@@ -59,16 +59,16 @@ BEGIN
 	--mes ano
 	AND	(Month(@mesAno) =
 		case when len(@mesAno) > 0
-		then MONTH(p.DataCriacao)
+		then MONTH(d.ExpirationDate)
 		else Month(@mesAno)
 		end)
 	AND (Year(@mesAno) =
 		case when len(@mesAno) > 0
-		then YEAR(p.DataCriacao)
+		then YEAR(d.ExpirationDate)
 		else Year(@mesAno)
 		end)
 	--periodo
-	AND ((p.DataCriacao between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
+	AND ((d.ExpirationDate between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
 	--subgrupo
 	AND (@subgrupo =
 		case when @subgrupo > 0
