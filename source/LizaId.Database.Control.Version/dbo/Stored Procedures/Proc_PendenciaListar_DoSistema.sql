@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema]
+	@idUsuario int, 
 	@statusPendencia bit = 1,
 	@mesAno varchar(10) = '',
 	@dataInicio datetime = NULL, 
@@ -10,6 +11,8 @@
 	@idEmpresaDestino INT = 0
 AS 
 BEGIN
+
+	set dateformat dmy
 
 	if(ISNULL(@mesAno, '') = '')
 	set @mesAno = ''
@@ -31,28 +34,41 @@ BEGIN
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
-		,d.ExpirationDate
+		,dataVencimentoDocumento = d.ExpirationDate
 		,p.DescricaoEncerramento
 	FROM [dbo].[Pendencia] p
 	INNER JOIN [dbo].EmpresaReceptora er ON er.idEmpresaReceptora = p.idEmpresaDestinataria
 	INNER JOIN [dbo].GrupoInformacao gi ON gi.idGrupoInformacao = p.idGrupoInformacao
 	LEFT JOIN [Companies].CompanyDocuments d ON p.CompanyDocumentId = d.Id
 	WHERE 
+	--existe comp para a empresa do @idUsuario e email reg na table UsuarioReceptorCompartilhamento?
+	EXISTS(
+		SELECT 1 FROM Compartilhamento c
+		INNER JOIN EmpresaReceptora er on er.CNPJEmpresa = c.CNPJEmpresaReceptora 
+		INNER JOIN UsuarioEmpresa ue on ue.idEmpresa = er.idEmpresaReceptora
+		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
+		WHERE u.idUsuario = @idUsuario
+		AND EXISTS(
+			select 1 from UsuarioReceptorCompartilhamento surc 
+			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
+			and surc.idCompartilhamento = c.idCompartilhamento
+		)
+	)
 	--status
-	p.StatusPendencia = @statusPendencia
+	AND p.StatusPendencia = @statusPendencia
 	--mes ano
 	AND	(Month(@mesAno) =
 		case when len(@mesAno) > 0
-		then MONTH(p.DataCriacao)
+		then MONTH(d.ExpirationDate)
 		else Month(@mesAno)
 		end)
 	AND (Year(@mesAno) =
 		case when len(@mesAno) > 0
-		then YEAR(p.DataCriacao)
+		then YEAR(d.ExpirationDate)
 		else Year(@mesAno)
 		end)
 	--periodo
-	AND ((p.DataCriacao between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
+	AND ((d.ExpirationDate between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
 	--subgrupo
 	AND (@subgrupo =
 		case when @subgrupo > 0

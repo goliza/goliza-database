@@ -1,4 +1,4 @@
-﻿CREATE PROC [dbo].[Proc_EmpresaListarCompartilhadas] 
+﻿CREATE PROC [dbo].[Proc_EmpresaListarCompartilhadas] --[dbo].[Proc_EmpresaListarCompartilhadas] 27, 48
 	@idUsuario int,
 	@idEmpresaReceptora int
 AS 
@@ -18,7 +18,11 @@ BEGIN
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
 		WHERE u.idUsuario = @idUsuario
 		and ue.idEmpresa = @idEmpresaReceptora
-		
+		AND EXISTS(
+			select 1 from UsuarioReceptorCompartilhamento surc 
+			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
+			and surc.idCompartilhamento = c.idCompartilhamento
+		)
 	)
 
 END

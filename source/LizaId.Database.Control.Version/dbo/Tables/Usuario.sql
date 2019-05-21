@@ -13,11 +13,13 @@
     [PoliticaPrivacidadeUsuario] BIT           NOT NULL,
     [idUsuarioCriacao]           INT           NULL,
     [DataCriacao]                DATETIME      NULL,
-    [idUsuarioUltimaAlteracao]   INT           NOT NULL,
-    [DataUltimaAlteracao]        DATETIME      NOT NULL,
+    [idUsuarioUltimaAlteracao]   INT           NULL,
+    [DataUltimaAlteracao]        DATETIME      NULL,
     CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED ([idUsuario] ASC),
     CONSTRAINT [FK_Usuario_Empresa] FOREIGN KEY ([IdEmpresaGrupo]) REFERENCES [dbo].[EmpresaGrupo] ([idEmpresaGrupo]),
     CONSTRAINT [FK_Usuario_Token] FOREIGN KEY ([idToken]) REFERENCES [dbo].[Token] ([idToken]),
     CONSTRAINT [FK_Usuario_UsuarioStatus] FOREIGN KEY ([idUsuarioStatus]) REFERENCES [dbo].[UsuarioStatus] ([idUsuarioStatus])
 );
+
+
 
