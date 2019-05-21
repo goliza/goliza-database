@@ -24,9 +24,3 @@ BEGIN
 	OFFSET @Inicio ROW
 	FETCH NEXT @Total ROWS ONLY
 END
-
-
-
-
-
-
