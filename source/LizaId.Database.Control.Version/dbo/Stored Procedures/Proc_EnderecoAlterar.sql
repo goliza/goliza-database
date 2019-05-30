@@ -9,14 +9,17 @@
     @NumeroEndereco varchar(20) = NULL,
     @ComplementoEndereco varchar(20) = NULL,
     @BairroEndereco varchar(MAX) = NULL,
-    @CidadeEndereco varchar(MAX) = NULL
+    @CidadeEndereco varchar(MAX) = NULL,
+    @Cnpj varchar(20) = NULL
 AS 
 BEGIN
 	UPDATE [dbo].[Endereco]
-	SET    [DescricaoEndereco] = @DescricaoEndereco, [idPaisEndereco] = @idPaisEndereco, [CEPEndereco] = @CEPEndereco, [CaixaPostalEndereco] = @CaixaPostalEndereco, [UFEndereco] = @UFEndereco, [LogradouroEndereco] = @LogradouroEndereco, [NumeroEndereco] = @NumeroEndereco, [ComplementoEndereco] = @ComplementoEndereco, [BairroEndereco] = @BairroEndereco, [CidadeEndereco] = @CidadeEndereco
+	SET    [DescricaoEndereco] = @DescricaoEndereco, [idPaisEndereco] = @idPaisEndereco, [CEPEndereco] = @CEPEndereco, [CaixaPostalEndereco] = @CaixaPostalEndereco, [UFEndereco] = @UFEndereco, [LogradouroEndereco] = @LogradouroEndereco, [NumeroEndereco] = @NumeroEndereco, [ComplementoEndereco] = @ComplementoEndereco, [BairroEndereco] = @BairroEndereco, [CidadeEndereco] = @CidadeEndereco, [Cnpj] = @Cnpj
 	WHERE  [idEndereco] = @idEndereco
 
 	DELETE FROM TelefoneEndereco WHERE [IdEnderecoTelefone] = @idEndereco
 	
 	RETURN (@idEndereco)
 END
+
+
