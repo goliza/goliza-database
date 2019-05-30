@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE [dbo].[Proc_EmpresaListarIncluindoRelacionadas]
+﻿
+
+CREATE PROCEDURE [dbo].[Proc_EmpresaListarIncluindoRelacionadas]
 	@idEmpresaReceptora int,
 	@idUsuario int,
 	@incluirComQuemCompartilhei bit = 1
@@ -18,13 +20,15 @@ BEGIN
 		INNER JOIN EmpresaReceptora er on er.CNPJEmpresa = c.CNPJEmpresaReceptora 
 		INNER JOIN UsuarioEmpresa ue on ue.idEmpresa = er.idEmpresaReceptora
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
+		inner join EmpresaGrupo as eg on eg.idEmpresaGrupo = er.idEmpresaGrupo
 		WHERE u.idUsuario = @idUsuario
 		and ue.idEmpresa = @idEmpresaReceptora
-		AND EXISTS(
+		AND (eg.idPlano is not null or 
+		EXISTS(
 			select 1 from UsuarioReceptorCompartilhamento surc 
 			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
 			and surc.idCompartilhamento = c.idCompartilhamento
-		)
+		))
 	)
 	UNION 
 	--MINHAS EMPRESAS

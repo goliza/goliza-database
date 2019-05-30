@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema]
+﻿
+CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema]
 	@idUsuario int, 
 	@statusPendencia bit = 1,
 	@mesAno varchar(10) = '',
@@ -47,28 +48,30 @@ BEGIN
 		INNER JOIN EmpresaReceptora er on er.CNPJEmpresa = c.CNPJEmpresaReceptora 
 		INNER JOIN UsuarioEmpresa ue on ue.idEmpresa = er.idEmpresaReceptora
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
+		inner join EmpresaGrupo as eg on eg.idEmpresaGrupo = er.idEmpresaGrupo 
 		WHERE u.idUsuario = @idUsuario
-		AND EXISTS(
+		AND (eg.idPlano is not null or 
+		EXISTS(
 			select 1 from UsuarioReceptorCompartilhamento surc 
 			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
 			and surc.idCompartilhamento = c.idCompartilhamento
-		)
+		))
 	)
 	--status
 	AND p.StatusPendencia = @statusPendencia
 	--mes ano
 	AND	(Month(@mesAno) =
 		case when len(@mesAno) > 0
-		then MONTH(d.ExpirationDate)
+		then MONTH(p.DataCriacao)
 		else Month(@mesAno)
 		end)
 	AND (Year(@mesAno) =
 		case when len(@mesAno) > 0
-		then YEAR(d.ExpirationDate)
+		then YEAR(p.DataCriacao)
 		else Year(@mesAno)
 		end)
 	--periodo
-	AND ((d.ExpirationDate between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
+	AND ((p.DataCriacao between @dataInicio AND @dataFim) OR (@dataInicio IS NULL AND @dataFim IS NULL))
 	--subgrupo
 	AND (@subgrupo =
 		case when @subgrupo > 0
