@@ -1,5 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Proc_EnderecoListar]
-	@IdEmpresa INT,
+﻿CREATE PROCEDURE [dbo].[Proc_EnderecoListar] @IdEmpresa INT,
 	@Inicio INT = 0, 
 	@Total INT = 1
 AS 
@@ -19,7 +18,7 @@ BEGIN
 		,[CidadeEndereco]
 	FROM [dbo].[Endereco]
 	WHERE [idEmpresa] = @IdEmpresa
-	ORDER BY [idEndereco] DESC
+	ORDER BY [DataAlteracao] DESC
 	OFFSET @Inicio ROW
 	FETCH NEXT @Total ROWS ONLY
 END

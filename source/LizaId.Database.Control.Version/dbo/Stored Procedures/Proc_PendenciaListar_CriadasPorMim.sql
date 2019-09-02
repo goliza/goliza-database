@@ -31,6 +31,7 @@ BEGIN
 		,p.idUsuarioCriacao
 		,p.DataCriacao
 		,p.idUsuarioUltimaAlteracao
+		,UsuarioEmailUltimaInteracao = u.NomeUsuario + ' (' + u.EmailUsuario + ')' 
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa

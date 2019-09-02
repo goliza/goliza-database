@@ -1,5 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Proc_ContatoListar]
-	@IdEmpresa INT,
+﻿CREATE PROCEDURE [dbo].[Proc_ContatoListar] @IdEmpresa INT,
 	@Inicio INT = 0, 
 	@Total INT = 1
 AS 
@@ -13,7 +12,7 @@ BEGIN
 		,[idTipoContato]
 	FROM [dbo].[Contato]
 	WHERE [idEmpresa] = @IdEmpresa
-	ORDER BY [idContato] DESC
+	ORDER BY [DataAlteracao] DESC
 	OFFSET @Inicio ROW
 	FETCH NEXT @Total ROWS ONLY
 END

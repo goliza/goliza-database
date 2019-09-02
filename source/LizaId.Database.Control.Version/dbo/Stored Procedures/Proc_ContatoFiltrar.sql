@@ -16,7 +16,7 @@ IF (@Nome IS NULL AND @Cargo IS NULL)
 			,[idTipoContato]
 		FROM [dbo].[Contato]
 		WHERE [idEmpresa] = @IdEmpresa
-		ORDER BY [idContato]
+		ORDER BY [idContato] DESC
 	END
 ELSE IF (@Nome IS NULL)
 	BEGIN

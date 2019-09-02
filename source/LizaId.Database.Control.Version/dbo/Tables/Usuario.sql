@@ -1,8 +1,12 @@
 ﻿CREATE TABLE [dbo].[Usuario] (
+    [DataCriacao]                DATETIME2 (7)  NULL,
+    [idUsuarioCriacao]           INT            NULL,
+    [DataUltimaAlteracao]        DATETIME2 (7)  NULL,
+    [idUsuarioUltimaAlteracao]   INT            NULL,
     [idUsuario]                  INT            IDENTITY (1, 1) NOT NULL,
-    [NomeUsuario]                VARCHAR (MAX)  NOT NULL,
-    [EmailUsuario]               VARCHAR (MAX)  NOT NULL,
-    [LoginUsuario]               VARCHAR (MAX)  NOT NULL,
+    [NomeUsuario]                NVARCHAR (MAX) NOT NULL,
+    [EmailUsuario]               NVARCHAR (MAX) NOT NULL,
+    [LoginUsuario]               NVARCHAR (MAX) NOT NULL,
     [CPFUsuario]                 CHAR (14)      NOT NULL,
     [TelefoneUsuario]            VARCHAR (30)   NULL,
     [HashSenhaUsuario]           NVARCHAR (MAX) NULL,
@@ -11,19 +15,20 @@
     [idToken]                    INT            NULL,
     [TermosUsoUsuario]           BIT            NOT NULL,
     [PoliticaPrivacidadeUsuario] BIT            NOT NULL,
-    [idUsuarioCriacao]           INT            NULL,
-    [DataCriacao]                DATETIME       NULL,
-    [idUsuarioUltimaAlteracao]   INT            NULL,
-    [DataUltimaAlteracao]        DATETIME       NULL,
     [Bloqueado]                  BIT            DEFAULT ((0)) NOT NULL,
     [Departamento]               VARCHAR (200)  NULL,
     CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED ([idUsuario] ASC),
-    CONSTRAINT [FK_Usuario_Empresa] FOREIGN KEY ([IdEmpresaGrupo]) REFERENCES [dbo].[EmpresaGrupo] ([idEmpresaGrupo]),
-    CONSTRAINT [FK_Usuario_Token] FOREIGN KEY ([idToken]) REFERENCES [dbo].[Token] ([idToken]),
-    CONSTRAINT [FK_Usuario_UsuarioStatus] FOREIGN KEY ([idUsuarioStatus]) REFERENCES [dbo].[UsuarioStatus] ([idUsuarioStatus])
+    CONSTRAINT [FK_Usuario_Token_idToken] FOREIGN KEY ([idToken]) REFERENCES [dbo].[Token] ([idToken])
 );
 
 
 
 
+
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Usuario_idToken]
+    ON [dbo].[Usuario]([idToken] ASC) WHERE ([idToken] IS NOT NULL);
 

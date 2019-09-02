@@ -1,5 +1,5 @@
 ﻿
-CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema]
+CREATE PROCEDURE [dbo].[Proc_PendenciaListar_DoSistema] -- [dbo].[Proc_PendenciaListar_DoSistema] 2
 	@idUsuario int, 
 	@statusPendencia bit = 1,
 	@mesAno varchar(10) = '',
@@ -32,6 +32,7 @@ BEGIN
 		,p.idUsuarioCriacao
 		,p.DataCriacao
 		,p.idUsuarioUltimaAlteracao
+		,UsuarioEmailUltimaInteracao = (select u.NomeUsuario + ' (' + u.EmailUsuario + ')'  from Usuario u where u.idUsuario = @idUsuario)
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
@@ -44,17 +45,17 @@ BEGIN
 	WHERE 
 	--existe comp para a empresa do @idUsuario e email reg na table UsuarioReceptorCompartilhamento?
 	EXISTS(
-		SELECT 1 FROM Compartilhamento c
-		INNER JOIN EmpresaReceptora er on er.CNPJEmpresa = c.CNPJEmpresaReceptora 
+		SELECT 1 FROM Conexoes c
+		INNER JOIN EmpresaReceptora er on er.idEmpresaReceptora = c.EmpresaConectadaId 
 		INNER JOIN UsuarioEmpresa ue on ue.idEmpresa = er.idEmpresaReceptora
 		INNER JOIN Usuario u ON u.idUsuario = ue.idUsuario
 		inner join EmpresaGrupo as eg on eg.idEmpresaGrupo = er.idEmpresaGrupo 
 		WHERE u.idUsuario = @idUsuario
 		AND (eg.idPlano is not null or 
 		EXISTS(
-			select 1 from UsuarioReceptorCompartilhamento surc 
-			where surc.EmailUsuarioReceptorCompartilhamento = U.EmailUsuario
-			and surc.idCompartilhamento = c.idCompartilhamento
+			select 1 from ConexoesEmpresasUsuarios surc 
+			inner join ConexoesEmpresas x on x.Id = surc.ConexaoEmpresaId
+			where surc.Email = U.EmailUsuario
 		))
 	)
 	--status

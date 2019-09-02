@@ -21,7 +21,7 @@ IF (@Logradouro IS NULL AND @Cidade IS NULL)
 			,[CidadeEndereco]
 		FROM [dbo].[Endereco]
 		WHERE [idEmpresa] = @IdEmpresa
-		ORDER BY [idEndereco]
+		ORDER BY [idEndereco] desc
 	END
 ELSE IF (@Logradouro IS NULL)
 	BEGIN
@@ -43,7 +43,7 @@ ELSE IF (@Logradouro IS NULL)
 		AND (
 			lower([CidadeEndereco]) like '%' + lower(@Cidade) + '%'
 		)
-		ORDER BY [idEndereco]
+		ORDER BY [idEndereco] desc
 	END
 ELSE IF (@Cidade IS NULL)
 	BEGIN
@@ -65,7 +65,7 @@ ELSE IF (@Cidade IS NULL)
 		AND (
 			lower([LogradouroEndereco]) like '%' + lower(@Logradouro) + '%'
 		)
-		ORDER BY [idEndereco]
+		ORDER BY [idEndereco] desc
 	END
 ELSE
 	BEGIN
@@ -88,7 +88,7 @@ ELSE
 		lower([LogradouroEndereco]) like '%' + lower(@Logradouro) + '%'
 		OR lower([CidadeEndereco]) like '%' + lower(@Cidade) + '%'
 		)
-		ORDER BY [idEndereco]
+		ORDER BY [idEndereco] desc
 	END
 END
 

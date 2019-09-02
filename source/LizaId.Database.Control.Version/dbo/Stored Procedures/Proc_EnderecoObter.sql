@@ -1,5 +1,4 @@
-﻿CREATE PROC [dbo].[Proc_EnderecoObter] 
-    @idEndereco int
+﻿CREATE PROCEDURE [dbo].[Proc_EnderecoObter] @idEndereco int
 AS 
 BEGIN
 	SELECT 
@@ -15,6 +14,7 @@ BEGIN
 		,[ComplementoEndereco]
 		,[BairroEndereco]
 		,[CidadeEndereco]
+		,[Cnpj]
 	FROM   [dbo].[Endereco] 
 	WHERE  ([idEndereco] = @idEndereco) 
 END

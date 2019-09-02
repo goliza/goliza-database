@@ -1,15 +1,25 @@
 ﻿CREATE TABLE [dbo].[UsuarioEmpresa] (
-    [idUsuarioEmpresa]         INT      NOT NULL IDENTITY,
-    [idEmpresa]                INT      NOT NULL,
-    [idUsuario]                INT      NOT NULL,
-    [idUsuarioCriacao]         INT      NULL,
     [DataCriacao]              DATETIME NULL,
-    [idUsuarioUltimaAlteracao] INT      NULL,
+    [idUsuarioCriacao]         INT      NULL,
     [DataUltimaAlteracao]      DATETIME NULL,
+    [idUsuarioUltimaAlteracao] INT      NULL,
+    [idUsuarioEmpresa]         INT      IDENTITY (1, 1) NOT NULL,
+    [idUsuario]                INT      NOT NULL,
+    [idEmpresa]                INT      NOT NULL,
     CONSTRAINT [PK_UsuarioEmpresa] PRIMARY KEY CLUSTERED ([idUsuarioEmpresa] ASC),
-    CONSTRAINT [FK_UsuarioEmpresa_EmpresaReceptora] FOREIGN KEY ([idEmpresa]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]),
-    CONSTRAINT [FK_UsuarioEmpresa_Usuario] FOREIGN KEY ([idUsuario]) REFERENCES [dbo].[Usuario] ([idUsuario]),
-    CONSTRAINT [FK_UsuarioEmpresa_Usuario1] FOREIGN KEY ([idUsuarioCriacao]) REFERENCES [dbo].[Usuario] ([idUsuario]),
-    CONSTRAINT [FK_UsuarioEmpresa_Usuario2] FOREIGN KEY ([idUsuarioUltimaAlteracao]) REFERENCES [dbo].[Usuario] ([idUsuario])
+    CONSTRAINT [FK_UsuarioEmpresa_EmpresaReceptora_idEmpresa] FOREIGN KEY ([idEmpresa]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]) ON DELETE CASCADE,
+    CONSTRAINT [FK_UsuarioEmpresa_Usuario_idUsuario] FOREIGN KEY ([idUsuario]) REFERENCES [dbo].[Usuario] ([idUsuario]) ON DELETE CASCADE
 );
+
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_UsuarioEmpresa_idUsuario]
+    ON [dbo].[UsuarioEmpresa]([idUsuario] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_UsuarioEmpresa_idEmpresa]
+    ON [dbo].[UsuarioEmpresa]([idEmpresa] ASC);
 

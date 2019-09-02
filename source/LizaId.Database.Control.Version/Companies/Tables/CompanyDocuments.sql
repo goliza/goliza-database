@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [Companies].[CompanyDocuments] (
-    [Id]                             UNIQUEIDENTIFIER NOT NULL,
-    [DataCriacao]                    DATETIME2 (7)    NOT NULL,
+    [DataCriacao]                    DATETIME2 (7)    NULL,
     [DataAtualizacao]                DATETIME2 (7)    NULL,
+    [Id]                             UNIQUEIDENTIFIER NOT NULL,
     [CompanyId]                      INT              NOT NULL,
     [Type]                           INT              NOT NULL,
     [Subtype]                        INT              NULL,
@@ -20,6 +20,8 @@
     CONSTRAINT [PK_CompanyDocuments] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_CompanyDocuments_EmpresaReceptora_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[EmpresaReceptora] ([idEmpresaReceptora]) ON DELETE CASCADE
 );
+
+
 
 
 GO

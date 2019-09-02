@@ -32,6 +32,7 @@ BEGIN
 		,p.idUsuarioCriacao
 		,p.DataCriacao
 		,p.idUsuarioUltimaAlteracao
+		,UsuarioEmailUltimaInteracao = (select u.NomeUsuario + ' (' + u.EmailUsuario + ')'  from Usuario u where u.idUsuario = ue.idUsuario)
 		,p.DataUltimaAlteracao
 		,gi.NomeGrupoInformacao
 		,RazaoSocial = er.RazaoSocialEmpresa
