@@ -203,11 +203,10 @@ BEGIN
 	ORDER BY
 		CASE 
 		WHEN @ordenarPor = 1 THEN tb.DataCriacao -- MAIS RECENTES
+		WHEN @ordenarPor = 3 THEN tb.DataPrevisaoConclusao -- VENCIMENTO PROXIMO
 		WHEN @ordenarPor = 4 THEN tb.DataUltimaAlteracao --RESOLUÇÃO PRÓXIMA
-		WHEN @ordenarPor = 5 THEN tb.DataPrevisaoConclusao -- VENCIMENTO DECRESCENTE	
 		END DESC,
 		CASE
-		WHEN @ordenarPor = 3 THEN tb.DataPrevisaoConclusao -- VENCIMENTO CRESCENTE
 		WHEN @ordenarPor = 2 THEN tb.DataCriacao -- MAIS ANTIGAS
 		END ASC
 
