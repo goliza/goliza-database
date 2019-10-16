@@ -119,9 +119,7 @@
     <Build Include="dbo\Stored Procedures\Proc_BuscarTipoDocumento.sql" />
     <Build Include="dbo\Stored Procedures\Proc_ContatoAlterar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_ContatoExcluir.sql" />
-    <Build Include="dbo\Stored Procedures\Proc_ContatoFiltrar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_ContatoInserir.sql" />
-    <Build Include="dbo\Stored Procedures\Proc_ContatoListar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_ContatoObter.sql" />
     <Build Include="dbo\Stored Procedures\Proc_DocumentoAlterar.sql" />
     <Build Include="dbo\Stored Procedures\Proc_DocumentoExcluir.sql" />
@@ -212,6 +210,7 @@
     <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioExiste.sql" />
     <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioProprietarioEmpresa.sql" />
     <Build Include="dbo\Stored Procedures\Proc_VerificaUsuarioAtivoNosEmails.sql" />
+    <Build Include="Security\andreroque.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />

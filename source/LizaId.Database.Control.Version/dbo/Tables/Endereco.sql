@@ -11,11 +11,14 @@
     [BairroEndereco]      NVARCHAR (MAX) NULL,
     [CidadeEndereco]      NVARCHAR (MAX) NULL,
     [UFEndereco]          CHAR (2)       NULL,
-    [Cnpj]                VARCHAR (20)   NOT NULL,
+    [Cnpj]                VARCHAR (20)   NULL,
     [DataAlteracao]       DATETIME       NULL,
+    [DataCriacao]         DATETIME2 (7)  DEFAULT (getdate()) NULL,
     CONSTRAINT [PK_Endereco] PRIMARY KEY CLUSTERED ([idEndereco] ASC),
     CONSTRAINT [FK_Endereco_Pais_idPaisEndereco] FOREIGN KEY ([idPaisEndereco]) REFERENCES [dbo].[Pais] ([idPais]) ON DELETE CASCADE
 );
+
+
 
 
 

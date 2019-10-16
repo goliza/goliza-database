@@ -6,9 +6,12 @@
     [CargoContato]     NVARCHAR (MAX) NOT NULL,
     [idTipoContato]    INT            NOT NULL,
     [DataAlteracao]    DATETIME       NULL,
+    [DataCriacao]      DATETIME2 (7)  DEFAULT (getdate()) NULL,
     CONSTRAINT [PK_Contato] PRIMARY KEY CLUSTERED ([idContato] ASC),
     CONSTRAINT [FK_Contato_TipoContato_idTipoContato] FOREIGN KEY ([idTipoContato]) REFERENCES [dbo].[TipoContato] ([idTipoContato]) ON DELETE CASCADE
 );
+
+
 
 
 

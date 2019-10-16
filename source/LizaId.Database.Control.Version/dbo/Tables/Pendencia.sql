@@ -16,10 +16,13 @@
     [CompanyDocumentId]        UNIQUEIDENTIFIER NULL,
     [DataPrevisaoConclusao]    DATETIME2 (7)    NULL,
     [MotivoPendencia]          INT              DEFAULT ((0)) NOT NULL,
+    [RegisterId]               UNIQUEIDENTIFIER NULL,
     CONSTRAINT [PK_Pendencia] PRIMARY KEY CLUSTERED ([idPendencia] ASC),
     CONSTRAINT [FK_Pendencia_CompanyDocuments_CompanyDocumentId] FOREIGN KEY ([CompanyDocumentId]) REFERENCES [Companies].[CompanyDocuments] ([Id]),
     CONSTRAINT [FK_Pendencia_TipoPendencia_IdTipoPendencia] FOREIGN KEY ([IdTipoPendencia]) REFERENCES [dbo].[TipoPendencia] ([IdTipoPendencia]) ON DELETE CASCADE
 );
+
+
 
 
 

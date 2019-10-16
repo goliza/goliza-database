@@ -8,9 +8,12 @@
     [UsuarioCriacaoId]     INT              NULL,
     [DataAlteracao]        DATETIME2 (7)    NULL,
     [UsuarioAlteracaoId]   INT              NULL,
+    [MimeType]             VARCHAR (100)    NULL,
     CONSTRAINT [PK_RepresentantesLegaisArquivos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_RepresentantesLegaisArquivos_RepresentantesLegais_RepresentanteLegalId] FOREIGN KEY ([RepresentanteLegalId]) REFERENCES [dbo].[RepresentantesLegais] ([Id]) ON DELETE CASCADE
 );
+
+
 
 
 GO

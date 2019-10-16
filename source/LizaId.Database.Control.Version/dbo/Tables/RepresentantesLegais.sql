@@ -23,7 +23,7 @@
     [Cidade]                    VARCHAR (100)    NOT NULL,
     [Estado]                    VARCHAR (5)      NULL,
     [Cargo]                     VARCHAR (200)    NULL,
-    [DataInicioAtividades]      DATETIME2 (7)    NOT NULL,
+    [DataInicioAtividades]      DATETIME2 (7)    NULL,
     [ComprovanteIdentidade]     BIT              NOT NULL,
     [ComprovanteResidencia]     BIT              NOT NULL,
     [CertidaoCasamento]         BIT              NOT NULL,
@@ -36,4 +36,6 @@
     [PaisId]                    INT              DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_RepresentantesLegais] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

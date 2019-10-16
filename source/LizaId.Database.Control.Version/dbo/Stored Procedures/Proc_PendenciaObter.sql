@@ -15,6 +15,9 @@ BEGIN
 		,DataCriacao
 		,idUsuarioUltimaAlteracao
 		,DataUltimaAlteracao
+		,IdTipoPendencia
+		,DescricaoEncerramento
+		,MotivoPendencia
 	FROM Pendencia  p
 	WHERE p.idPendencia = @idPendencia
 END

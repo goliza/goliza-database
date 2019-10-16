@@ -3,14 +3,16 @@
     [UsuarioAlteracaoId]    INT              NULL,
     [Id]                    UNIQUEIDENTIFIER NOT NULL,
     [RecomendacaoNegocioId] UNIQUEIDENTIFIER NOT NULL,
-    [CodigoPais]            VARCHAR (2)      NOT NULL,
+    [CodigoPais]            VARCHAR (3)      NOT NULL,
     [CodigoArea]            VARCHAR (2)      NOT NULL,
-    [Numero]                VARCHAR (9)      NOT NULL,
+    [Numero]                VARCHAR (20)     NOT NULL,
     [Ramal]                 VARCHAR (10)     NULL,
     [Tipo]                  SMALLINT         NOT NULL,
     CONSTRAINT [PK_RecomendacoesNegocioTelefones] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_RecomendacoesNegocioTelefones_RecomendacoesNegocio_RecomendacaoNegocioId] FOREIGN KEY ([RecomendacaoNegocioId]) REFERENCES [Empresas].[RecomendacoesNegocio] ([Id]) ON DELETE CASCADE
 );
+
+
 
 
 

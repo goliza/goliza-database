@@ -18,7 +18,14 @@ BEGIN
 		,[CidadeEndereco]
 	FROM [dbo].[Endereco]
 	WHERE [idEmpresa] = @IdEmpresa
-	ORDER BY [DataAlteracao] DESC
+	ORDER BY 
+		CASE WHEN DataAlteracao IS NULL
+		THEN DataCriacao
+		ELSE DataAlteracao
+		END
+	DESC
 	OFFSET @Inicio ROW
 	FETCH NEXT @Total ROWS ONLY
 END
+
+select * from endereco

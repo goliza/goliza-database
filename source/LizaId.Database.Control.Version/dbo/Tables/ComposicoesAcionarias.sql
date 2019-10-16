@@ -11,8 +11,8 @@
     [Cidade]                                VARCHAR (100)    NOT NULL,
     [Estado]                                VARCHAR (5)      NULL,
     [CaixaPostal]                           VARCHAR (10)     NULL,
-    [PorcentagemCapitalVolante]             DECIMAL (5, 2)   NOT NULL,
-    [PorcentagemCapitalTotal]               DECIMAL (5, 2)   NOT NULL,
+    [PorcentagemCapitalVolante]             DECIMAL (6, 2)   NOT NULL,
+    [PorcentagemCapitalTotal]               DECIMAL (6, 2)   NOT NULL,
     [Nome]                                  VARCHAR (15)     NULL,
     [Sobrenome]                             VARCHAR (200)    NULL,
     [Cpf]                                   VARCHAR (11)     NULL,
@@ -49,4 +49,6 @@
     [PaisId]                                INT              DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_ComposicoesAcionarias] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

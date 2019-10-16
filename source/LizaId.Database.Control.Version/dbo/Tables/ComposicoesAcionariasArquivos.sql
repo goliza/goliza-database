@@ -8,9 +8,12 @@
     [UsuarioCriacaoId]      INT              NULL,
     [DataAlteracao]         DATETIME2 (7)    NULL,
     [UsuarioAlteracaoId]    INT              NULL,
+    [MimeType]              VARCHAR (100)    NULL,
     CONSTRAINT [PK_ComposicoesAcionariasArquivos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_ComposicoesAcionariasArquivos_ComposicoesAcionarias_ComposicaoAcionariaId] FOREIGN KEY ([ComposicaoAcionariaId]) REFERENCES [dbo].[ComposicoesAcionarias] ([Id]) ON DELETE CASCADE
 );
+
+
 
 
 GO

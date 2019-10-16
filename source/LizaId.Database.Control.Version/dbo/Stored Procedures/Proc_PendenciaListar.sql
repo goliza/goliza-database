@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar] --[dbo].[Proc_PendenciaListar] null,null,null,null,null,null,null,null,null,null,1,null,1,0,10, 29
+﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar] -- [dbo].[Proc_PendenciaListar] null,null,null,null,null,null,null,null,null,null,null,null,1,0,50, 29
 	@idEmpresaRemetente int, 
 	@idEmpresaDestinatario int, 
 	@inicioPeriodoCriacao varchar (15), 
@@ -22,20 +22,17 @@ BEGIN
 	
 	if len(@inicioPeriodoCriacao) > 0
 	set @inicioPeriodoCriacao = CONCAT(CONVERT(varchar(10), @inicioPeriodoCriacao, 103), ' 00:00:00')
-
 	if len(@inicioPeriodoVencimento) > 0
 	set @inicioPeriodoVencimento = CONCAT(CONVERT(varchar(10), @inicioPeriodoVencimento, 103), ' 00:00:00')
-
 	if len(@fimPeriodoCriacao) > 0
 	set @fimPeriodoCriacao = CONCAT(CONVERT(varchar(10),@fimPeriodoCriacao, 103), ' 23:59:59')
-
 	if len(@fimPeriodoVencimento) > 0
 	set @fimPeriodoVencimento = CONCAT(CONVERT(varchar(10),@fimPeriodoVencimento, 103), ' 23:59:59')
 	
 	SELECT 
 		idPendencia,
 		AssuntoPendencia,
-		MotivoPendencia, --CAMPO NOVO
+		MotivoPendencia, -- CAMPO NOVO
 		IdGrupoInformacao,
 		StatusPendencia,
 		CnpjRemetente,
@@ -44,18 +41,20 @@ BEGIN
 		RazaoDestinatario,
 		DataCriacao,
 		DataUltimaAlteracao,
-		DataPrevisaoConclusao, --CAMPO NOVO
+		DataPrevisaoConclusao, -- CAMPO NOVO
 		emailRemetente,
 		EmailDestinatario,
-		DescricaoPendencia, --Observacao
-		DescricaoEncerramento, --Resolucao
+		DescricaoPendencia, -- Observacao
+		DescricaoEncerramento, -- Resolucao
 		idTipoPendencia,
-		emailEncerramento
+		emailEncerramento,
+		registerId,
+		IdDestinatario
 	FROM (
 		SELECT
 			p.idPendencia,
 			p.AssuntoPendencia,
-			p.MotivoPendencia, --CAMPO NOVO
+			p.MotivoPendencia, -- CAMPO NOVO
 			p.IdGrupoInformacao,
 			p.StatusPendencia,
 			CnpjRemetente = remetente.cnpjEmpresa,
@@ -70,13 +69,15 @@ BEGIN
 					destinatario.NomeFantasiaEmpresa),
 			p.DataCriacao,
 			p.DataUltimaAlteracao,
-			p.DataPrevisaoConclusao, --CAMPO NOVO
+			p.DataPrevisaoConclusao, -- CAMPO NOVO
 			emailRemetente = remetente.EmailUsuario,
 			p.EmailDestinatario,
-			p.DescricaoPendencia, --Observacao
-			p.DescricaoEncerramento, --Resolucao
+			p.DescricaoPendencia, -- Observacao
+			p.DescricaoEncerramento, -- Resolucao
 			p.idTipoPendencia ,
-			emailEncerramento = (select _u.LoginUsuario from usuario _u where p.idUsuarioUltimaAlteracao = _u.idUsuario)
+			emailEncerramento = (select _u.LoginUsuario from usuario _u where p.idUsuarioUltimaAlteracao = _u.idUsuario),
+			registerId = p.CompanyDocumentId,
+			IdDestinatario =destinatario.idEmpresaReceptora
 		FROM pendencia p
 		OUTER APPLY (
 			select 
@@ -91,7 +92,7 @@ BEGIN
 			inner join UsuarioEmpresa _ue on _er.idEmpresaReceptora = _ue.idEmpresa
 			inner join usuario _u on _ue.idUsuario = _u.idUsuario
 			where _ue.idUsuarioEmpresa = p.idUsuarioEmpresa
-			--and _u.idUsuario = @idUsuario
+			-- and _u.idUsuario = @idUsuario
 		) remetente
 		OUTER APPLY (
 			select 
@@ -104,11 +105,11 @@ BEGIN
 				inner join UsuarioEmpresa _ue on _er.idEmpresaReceptora = _ue.idEmpresa
 				inner join usuario _u on _ue.idUsuario = _u.idUsuario
 			where _er.idEmpresaReceptora = p.idEmpresaDestinataria
-			--and _u.idUsuario = @idUsuario
-			--and (@idEmpresaDestinatario IS NOT NULL OR _uE.idUsuario = @idUsuario)
+			-- and _u.idUsuario = @idUsuario
+			-- and (@idEmpresaDestinatario IS NOT NULL OR _uE.idUsuario = @idUsuario)
 		) destinatario
 		WHERE 1=1
-		AND (remetente.idUsuario = @idUsuario or (@idEmpresaDestinatario IS NOT NULL OR destinatario.idUsuario = @idUsuario))
+		-- AND (remetente.idUsuario = @idUsuario or (@idEmpresaDestinatario IS NOT NULL OR destinatario.idUsuario = @idUsuario))
 		AND 
 		(
 			(
@@ -116,7 +117,7 @@ BEGIN
 					-- A EMPRESA SELECIONADA É REMETENTE OU É DESTINATARIA?
 					remetente.idEmpresaReceptora = @idEmpresaSelecionada or destinatario.idEmpresaReceptora = @idEmpresaSelecionada
 				)
-				--[OU] EXISTE OU EXISTIU (CHECAGEM POR DATA E STATUS), CONEXÃO PARA A EMPRESA SELECIONADA
+				-- [OU] EXISTE OU EXISTIU (CHECAGEM POR DATA E STATUS), CONEXÃO PARA A EMPRESA SELECIONADA
 				or p.IdTipoPendencia = 2 and p.idEmpresaDestinataria in (
 					select c.EmpresaConectadaId from Conexoes c 
 					where c.EmpresaId = @idEmpresaSelecionada
@@ -131,59 +132,49 @@ BEGIN
 			)
 		)
 	
-		--EMPRESA REMETENTE
+		-- EMPRESA REMETENTE
 		AND (isnull(@idEmpresaRemetente, 0) = 
 			case when @idEmpresaRemetente > 0
 			then remetente.idEmpresaReceptora
 			else 0
 			end)
-
-		--EMPRESA DESTINATARIA
+		-- EMPRESA DESTINATARIA
 		AND (isnull(@idEmpresaDestinatario, 0) = 
 			case when @idEmpresaDestinatario > 0
 			then destinatario.idEmpresaReceptora
 			else 0
 			end)
-
-		--PERÍODO CRIAÇÃO PENDENCIA
+		-- PERÍODO CRIAÇÃO PENDENCIA
 		AND ((p.DataCriacao between @inicioPeriodoCriacao AND @fimPeriodoCriacao) OR (@inicioPeriodoCriacao IS NULL AND @fimPeriodoCriacao IS NULL))
-
-		--PERÍODO VENCIMENTO DOCUMENTO
+		-- PERÍODO VENCIMENTO DOCUMENTO
 		AND ((p.DataPrevisaoConclusao between @inicioPeriodoVencimento AND @fimPeriodoVencimento) OR (@inicioPeriodoVencimento IS NULL AND @fimPeriodoVencimento IS NULL))
-
-		--EMAIL DESTINATÁRIO
+		-- EMAIL DESTINATÁRIO
 		AND (@email = '' or p.EmailDestinatario like concat('%',@email, '%'))
-
-		--ASSUNTO
+		-- ASSUNTO
 		AND (@assunto = '' or p.AssuntoPendencia like concat('%',@assunto, '%'))
-
-		--MOTIVO PENDENCIA
+		-- MOTIVO PENDENCIA
 		AND	(isnull(@motivoPendencia, 0) = 
 			case when @motivoPendencia > 0
 			then p.MotivoPendencia
 			else 0
 			end)
-
-		--SUBGRUPO
+		-- SUBGRUPO
 		AND	(isnull(@subgrupo, 0) = 
 			case when @subgrupo > 0
 			then p.idGrupoInformacao
 			else 0
 			end)
-
-		--STATUS
+		-- STATUS
 		AND	(isnull(@status, 2) = 
 			case when @status >= 0
 			then p.StatusPendencia
 			else 2
 			end)
-
 	) as tb
-
 	GROUP BY
 		idPendencia,
 		AssuntoPendencia,
-		MotivoPendencia, --CAMPO NOVO
+		MotivoPendencia, -- CAMPO NOVO
 		IdGrupoInformacao,
 		StatusPendencia,
 		CnpjRemetente,
@@ -192,24 +183,25 @@ BEGIN
 		RazaoDestinatario,
 		DataCriacao,
 		DataUltimaAlteracao,
-		DataPrevisaoConclusao, --CAMPO NOVO
+		DataPrevisaoConclusao, -- CAMPO NOVO
 		emailRemetente,
 		EmailDestinatario,
-		DescricaoPendencia, --Observacao
-		DescricaoEncerramento, --Resolucao
+		DescricaoPendencia, -- Observacao
+		DescricaoEncerramento, -- Resolucao
 		idTipoPendencia,
-		emailEncerramento
-
+		emailEncerramento,
+		registerId,
+		IdDestinatario
 	ORDER BY
 		CASE 
 		WHEN @ordenarPor = 1 THEN tb.DataCriacao -- MAIS RECENTES
-		WHEN @ordenarPor = 3 THEN tb.DataPrevisaoConclusao -- VENCIMENTO PROXIMO
-		WHEN @ordenarPor = 4 THEN tb.DataUltimaAlteracao --RESOLUÇÃO PRÓXIMA
+		WHEN @ordenarPor = 5 THEN tb.DataPrevisaoConclusao  -- VENCIMENTO PROXIMO
+		WHEN @ordenarPor = 4 THEN tb.DataUltimaAlteracao -- RESOLUÇÃO PRÓXIMA
 		END DESC,
 		CASE
 		WHEN @ordenarPor = 2 THEN tb.DataCriacao -- MAIS ANTIGAS
+		WHEN @ordenarPor = 3 THEN tb.DataPrevisaoConclusao  -- VENCIMENTO PROXIMO
 		END ASC
-
 	OFFSET (@page * @pageSize) ROW
 	FETCH NEXT @pageSize ROWS ONLY
 END
