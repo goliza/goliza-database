@@ -1,0 +1,1 @@
+UPDATE PERMISSAO set Nome='Consultar',Grupo = 'Parceiros' WHERE Id = 1
