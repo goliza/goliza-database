@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar] -- [dbo].[Proc_PendenciaListar] null,null,null,null,null,null,null,null,null,null,null,null,1,0,50, 29
+﻿CREATE PROCEDURE [dbo].[Proc_PendenciaListar] -- [dbo].[Proc_PendenciaListar] null,null,null,null,null,null,null,null,null,null,null,null,48,0,100, 81
 	@idEmpresaRemetente int, 
 	@idEmpresaDestinatario int, 
 	@inicioPeriodoCriacao varchar (15), 
@@ -28,7 +28,8 @@ BEGIN
 	set @fimPeriodoCriacao = CONCAT(CONVERT(varchar(10),@fimPeriodoCriacao, 103), ' 23:59:59')
 	if len(@fimPeriodoVencimento) > 0
 	set @fimPeriodoVencimento = CONCAT(CONVERT(varchar(10),@fimPeriodoVencimento, 103), ' 23:59:59')
-	
+		
+
 	SELECT 
 		idPendencia,
 		AssuntoPendencia,
@@ -49,11 +50,17 @@ BEGIN
 		idTipoPendencia,
 		emailEncerramento,
 		registerId,
-		IdDestinatario
+		idDestinatario,
+		idEmpresaConectada
 	FROM (
 		SELECT
 			p.idPendencia,
-			p.AssuntoPendencia,
+			AssuntoPendencia = iif(p.CompanyDocumentId is not null, 
+				(
+					select top 1 scd.Name 
+					from Companies.CompanyDocuments scd
+					where scd.Id = p.CompanyDocumentId
+				), p.AssuntoPendencia),
 			p.MotivoPendencia, -- CAMPO NOVO
 			p.IdGrupoInformacao,
 			p.StatusPendencia,
@@ -77,7 +84,8 @@ BEGIN
 			p.idTipoPendencia ,
 			emailEncerramento = (select _u.LoginUsuario from usuario _u where p.idUsuarioUltimaAlteracao = _u.idUsuario),
 			registerId = p.CompanyDocumentId,
-			IdDestinatario =destinatario.idEmpresaReceptora
+			idDestinatario = p.idEmpresaDestinataria,
+			idEmpresaConectada = conexaoDocumento.EmpresaConectadaId
 		FROM pendencia p
 		OUTER APPLY (
 			select 
@@ -92,7 +100,6 @@ BEGIN
 			inner join UsuarioEmpresa _ue on _er.idEmpresaReceptora = _ue.idEmpresa
 			inner join usuario _u on _ue.idUsuario = _u.idUsuario
 			where _ue.idUsuarioEmpresa = p.idUsuarioEmpresa
-			-- and _u.idUsuario = @idUsuario
 		) remetente
 		OUTER APPLY (
 			select 
@@ -105,11 +112,22 @@ BEGIN
 				inner join UsuarioEmpresa _ue on _er.idEmpresaReceptora = _ue.idEmpresa
 				inner join usuario _u on _ue.idUsuario = _u.idUsuario
 			where _er.idEmpresaReceptora = p.idEmpresaDestinataria
-			-- and _u.idUsuario = @idUsuario
-			-- and (@idEmpresaDestinatario IS NOT NULL OR _uE.idUsuario = @idUsuario)
 		) destinatario
+		OUTER APPLY
+		(
+			select ce.EmpresaConectadaId from ConexoesEmpresasDocumentos ced
+			inner join ConexoesEmpresas ce on ced.ConexaoEmpresaId = ce.Id
+			where ced.DocumentoId = p.CompanyDocumentId
+			and (EmpresaId = @idEmpresaSelecionada or EmpresaConectadaId = @idEmpresaSelecionada)
+		) conexaoDocumento
 		WHERE 1=1
-		-- AND (remetente.idUsuario = @idUsuario or (@idEmpresaDestinatario IS NOT NULL OR destinatario.idUsuario = @idUsuario))
+		AND 
+		(
+			-- NÃO É UM DOCUMENTO PRIVADO
+			p.idGrupoInformacao != 1101 
+			-- OU, É UM DOC PRIVADO E A EMPRESA SELECIONADA POSSUI CONEXÃO DE DOCUMENTO (ENVIOU DOC PRIVADO OU RECEBEU)
+			or P.idGrupoInformacao = 1101 AND conexaoDocumento.EmpresaConectadaId is not null
+		)
 		AND 
 		(
 			(
@@ -191,7 +209,8 @@ BEGIN
 		idTipoPendencia,
 		emailEncerramento,
 		registerId,
-		IdDestinatario
+		idDestinatario,
+		idEmpresaConectada
 	ORDER BY
 		CASE 
 		WHEN @ordenarPor = 1 THEN tb.DataCriacao -- MAIS RECENTES

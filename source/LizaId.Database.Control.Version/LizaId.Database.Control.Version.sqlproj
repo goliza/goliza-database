@@ -210,7 +210,10 @@
     <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioExiste.sql" />
     <Build Include="dbo\Stored Procedures\Proc_VerificarUsuarioProprietarioEmpresa.sql" />
     <Build Include="dbo\Stored Procedures\Proc_VerificaUsuarioAtivoNosEmails.sql" />
-    <Build Include="Security\andreroque.sql" />
+    <Build Include="dbo\Tables\UsuariosDepartamentos.sql" />
+    <Build Include="dbo\Tables\Departamentos.sql" />
+    <Build Include="dbo\Tables\ConexoesEmpresasDocumentosDepartamentos.sql" />
+    <Build Include="dbo\Tables\ConexoesEmpresasDocumentos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Goliza.Dev.publish.xml" />

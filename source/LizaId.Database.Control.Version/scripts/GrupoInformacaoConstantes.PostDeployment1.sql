@@ -130,3 +130,11 @@ INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idG
 SELECT 1001, N'Declaração Cadastral', 10
 WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 1001)
 
+INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idGrupoInformacaoPai)
+SELECT 11, N'Documentos Privados', null, 11, 'gestao-arquivos', null, 0
+WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 11)
+
+INSERT INTO [dbo].[GrupoInformacao] (idGrupoInformacao, NomeGrupoInformacao, idGrupoInformacaoPai)
+SELECT 1101, N'Documentos', 11, 1, 'documentos', null, 0
+WHERE not exists (select 1 from [dbo].[GrupoInformacao] where idGrupoInformacao = 1101)
+
